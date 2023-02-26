@@ -21,6 +21,20 @@
       font-weight: bold;
       color: $light-blue;
 
+      .note-card-body {
+        overflow: hidden;
+        position: relative;
+
+        max-height: 80px;
+
+        .truncate-text {
+          background: red;
+          bottom: 0;
+          position: absolute;
+          height: 50%;
+          width: 100%;
+        }
+      }
     }
   }
 }
