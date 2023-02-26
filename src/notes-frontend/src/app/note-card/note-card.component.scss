@@ -21,21 +21,23 @@
       font-weight: bold;
       color: $light-blue;
 
-      .note-card-body {
-        overflow: hidden;
-        position: relative;
+    }
 
-        max-height: 80px;
+    .note-card-body {
+      overflow: hidden;
+      position: relative;
 
-        .truncate-text {
-          background: red;
-          bottom: 0;
-          position: absolute;
-          height: 50%;
-          width: 100%;
-        }
+      max-height: 80px;
+
+      .truncate-text {
+        background: white;
+        bottom: 0;
+        position: absolute;
+        height: 50%;
+        width: 100%;
       }
     }
+
   }
 }
 
