@@ -1,15 +1,13 @@
 <div #container class="note-card-container">
   <div class="note-card-content">
-    <h1 class="note-card-title">Lorem ipsum</h1>
+    <h1 class="note-card-title">{{ title }}</h1>
 
 
     <div class="note-card-body">
-      <p> This is tthe actual content othe actual content othe actual content othe
-        actual content othe actual content ohe actual content of the note</p>
+      <p>{{ content }}</p>
 
       <!-- For visual flair, don't show the whole body of the note, if there's a lot of
       text -->
-
       <div class="truncate-text"></div>
     </div>
 
