@@ -3,13 +3,17 @@
   <!-- Because we have imported FormsModule in app.module.ts, Angular will
   automatically convert all form tags in to Angular forms.-->
   <form #noteForm="ngForm">
+
     <div class="field">
       <label class="label">Title</label>
       <div class="control">
-        <input type="text" class="input">
+        <input type="text" required class="input">
       </div>
     </div>
+
+
     <br>
+
     <div class="field">
       <div class="label">Content</div>
       <div class="control">
