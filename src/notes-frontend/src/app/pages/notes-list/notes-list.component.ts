@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Note} from "../../models/node.model";
+import {NotesService} from "../../notes.service";
 
 @Component({
   selector: 'app-notes-list',
   templateUrl: './notes-list.component.html',
   styleUrls: ['./notes-list.component.scss']
 })
-export class NotesListComponent {
+export class NotesListComponent implements OnInit {
+notes: Note[] = new Array<Note>();
+constructor(private notesService: NotesService) {
+}
+  ngOnInit(): void {
+    this.notes = this.notesService.getAll();
+  }
+
 
 }

@@ -1,3 +1,5 @@
+@import "../../../main-styles.scss";
+
 .main-container {
   display: flex;
   flex-direction: column;
@@ -8,8 +10,19 @@
   padding-top: 50px;
 }
 
+.add-buttom {
+  position: fixed;
+  bottom: 0;
+  width: 400px;
+  border-radius: 0;
+  height: 55px;
+  font-size: 20px;
+  box-shadow: 0px 0px 15px rgba($blue, 0.2);
+}
 
 .notes-list {
+  // prevent the "Add" button from overflowing the individual notes
+  margin-bottom: 70px;
   margin-top: 25px;
 }
 
