@@ -3,7 +3,8 @@
 ## Kontext
 
 
-Ein Platz, zum schnell Notitzen erfassen zu können, braucht fast jeder. Dieses Projekt setzt sich zum Ziel, eine minimale Notes-App zu erstellen. 
+Ein Tool, um schnell Notizen erfassen zu können, braucht fast jeder. Dieses Projekt 
+setzt sich zum Ziel, eine minimale Notes-App zu erstellen. 
 Ein Beispiel für bereits existierende Anwendungen, die ähnlich sind: Google Keep.
 
 
@@ -14,12 +15,13 @@ Ein Beispiel für bereits existierende Anwendungen, die ähnlich sind: Google Ke
 
 #### User Story 1: Anmelden mittels  (Prio 'Must')
 
-Als Benutzer möchte ich mich anmelden können, dass ich zugriff auf meine Notitzen habe.
+Als Benutzer möchte ich mich anmelden können, dass ich zugriff auf meine Notizen habe.
 
 **Akzeptanzkriterien**
 
-* Mittels korrektem Benutzername (E-Mail Adresse) und korrektem Passwort gelange ich zu meinen Notitzen.
-* Mit nicht korrekte Benutzerdaten (Benutzername / Passworter) kann ich mich nicht anmelden.
+* Mittels korrektem Benutzername (E-Mail-Adresse) und korrektem Passwort gelange ich zu meinen Notizen.
+* Mit nicht korrekte Benutzerdaten (Benutzername / Passwörter) kann ich mich nicht 
+  anmelden.
 
 #### User Story 2: Notitz erfassen (Prio 'Must')
 
@@ -27,7 +29,7 @@ Als Benutzer des Notes-App möchte ich neue Notizen erfassen können.
 
 **Akzeptanzkriterien**
 
-* Für die Erfassung einer neuen Notitz muss ich folgende Felder angeben können:
+* Für die Erfassung einer neuen Notiz muss ich folgende Felder angeben können:
     * Kategorie (Optionales-Feld)
     * Title (Optionales-Feld)
     * Inhalt (Muss-Feld)
@@ -47,12 +49,12 @@ Als Benutzer möchte ich neben Freitext auch strukturierte Daten (Listen) erfass
 
 **Akzeptanzkriterien**
 
-*Beim Schreiben einer Notitz kann das Format angepasst werden*
+*Beim Schreiben einer Notiz kann das Format angepasst werden*
 
 #### User Story 5: Export JSON (Prio 'Must')
 
 Als Benutzer möchte ich nicht abhängig sein von einer App, und folglich meine 
-Notiten exportieren können (um diese gegebenenfalls in eine andere App zu importieren).
+Notizen exportieren können (um diese gegebenenfalls in eine andere App zu importieren).
 Somit gibt es kein "Vendor Lock-in."
 
 **Akzeptanzkriterien**
