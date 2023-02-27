@@ -28,13 +28,12 @@ Als Benutzer des Notes-App möchte ich neue Notizen erfassen können.
 **Akzeptanzkriterien**
 
 * Für die Erfassung einer neuen Notitz muss ich folgende Felder angeben können:
-    * Name (Muss-Feld)
     * Kategorie (Optionales-Feld)
     * Title (Optionales-Feld)
+    * Inhalt (Muss-Feld)
+#### User Story 3: Notizen ändern (Prio 'Should')
 
-#### User Story 3: Notitzen ändern (Prio 'Should')
-
-Als eingeloggter Benutzer kann ich meine Notitzen verändern, um z.B. nicht mehr passende Informationen zu ändern.
+Als eingeloggter Benutzer kann ich meine Notizen verändern, um z.B. nicht mehr passende Informationen zu ändern.
 
 **Akzeptanzkriterien**
 
@@ -52,12 +51,13 @@ Als Benutzer möchte ich neben Freitext auch strukturierte Daten (Listen) erfass
 
 #### User Story 5: Export JSON (Prio 'Must')
 
-Als Benutzer möchte ich nicht abhängig sein von einer App, und folglich meine Notitzen exportieren können (um diese gegebenenfalls in eine andere App zu importieren)
+Als Benutzer möchte ich nicht abhängig sein von einer App, und folglich meine 
+Notiten exportieren können (um diese gegebenenfalls in eine andere App zu importieren).
 Somit gibt es kein "Vendor Lock-in."
 
 **Akzeptanzkriterien**
 
-* Es gibt einen Button: Export all, welcher alle Notitzen als json exportiert. 
+* Es gibt einen Button: Export all, welcher alle Notizen als json exportiert. 
     
 
 #### Nicht-Funktionale Anforderungen
