@@ -28,7 +28,7 @@ with app.app_context():
     db.create_all()
 
 
-@app.route("/note/list", methods=["GET"])
+@app.route("/notes", methods=["GET"])
 def get_notes():
     notes = Note.query.all()
     if notes:
@@ -39,7 +39,7 @@ def get_notes():
 
 @app.route("/note/<int:id>", methods=["GET"])
 def get_note(id):
-    note = db.query(Note).get(id)
+    note = Note.query.get(id)
     if note is None:
         abort(404)
     return jsonify(note.to_json())
