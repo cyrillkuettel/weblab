@@ -1,12 +1,18 @@
 from flask import Flask
 from flask import jsonify, request, abort
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 
 app = Flask(__name__)
+# setup because the python backend uses a different URI than the Angular frontend.
+# 4200 is the default Angular port
+CORS(app, origins=[ "http://localhost:4200"])
+
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
+
 class Note(db.Model):
     __tablename__ = "notes"
 
@@ -26,13 +32,16 @@ class Note(db.Model):
 
 with app.app_context():
     db.create_all()
-
+    note = Note(title="test",content="testcontent here", group="testGroup")
+    db.session.add(note)
+    db.session.commit()
 
 @app.route("/notes", methods=["GET"])
 def get_notes():
     notes = Note.query.all()
+    print(list(notes))
     if notes:
-        return jsonify([note.to_json() for note in notes])
+        return jsonify([n.to_json() for n in notes])
     else:
         return {}
 
