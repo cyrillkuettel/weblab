@@ -8,11 +8,16 @@ import {NotesService} from "../../notes.service";
   styleUrls: ['./notes-list.component.scss']
 })
 export class NotesListComponent implements OnInit {
-notes: Note[] = new Array<Note>();
-constructor(private notesService: NotesService) {
-}
+  notes: Note[] = new Array<Note>();
+
+  constructor(private notesService: NotesService) {
+  }
+
   ngOnInit(): void {
-    this.notes = this.notesService.getAll();
+
+    this.notesService.getAll().subscribe((notesListResponse: Array<Note>) => {
+      this.notes = notesListResponse;
+    });
   }
 
 

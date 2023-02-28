@@ -22,7 +22,10 @@ export class NoteDetailsComponent implements OnInit{
    this.route.params.subscribe((params: Params)=> {
      this.note = new Note();
       if (params['id'])  { // editing the note, because there is id in the url params
-        this.note = this.notesService.get(params['id']);
+
+        this.notesService.get(params['id']).subscribe((response: Note) => {
+            this.note = response;
+        });
         this.noteId = params['id'];
         this.is_new_note = false;
       } else {

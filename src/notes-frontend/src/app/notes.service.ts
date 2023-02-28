@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Note} from "./models/node.model";
+import {NotesAPIService} from "./notes-api.service";
 
 @Injectable({
   providedIn: 'root'
@@ -8,30 +9,25 @@ export class NotesService {
 
   notes: Note[] = new Array<Note>();
 
-  constructor() {
-  }
+  constructor(private webReqService: NotesAPIService) { }
 
   getAll() {
-    return this.notes;
+    return this.webReqService.getAll();
   }
 
-  get(id: number) {
-    return this.notes[id];
-  }
-
-  getId(note: Note) {
-    this.notes.indexOf(note);
+  get(id: string) {
+    return this.webReqService.get('/notes/' + id);
   }
 
   add(note: Note) {
-    let newLength = this.notes.push(note)
-    let index = newLength - 1;
-    return index
+    return this.webReqService.post('/notes', note);
   }
 
-  update(id: number, title: string, content: string) {
-    let note = this.notes[id];
+  update(id: number, title:string, content: string ) {
+    let note  = new Note()
     note.title = title;
     note.content = content;
+    return this.webReqService.put('/notes/' + title, note);
   }
+
 }
