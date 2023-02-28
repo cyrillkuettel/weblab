@@ -15,19 +15,20 @@ export class NotesService {
     return this.webReqService.getAll();
   }
 
-  get(id: string) {
-    return this.webReqService.get('/notes/' + id);
+  get(title: string) {
+
+    return this.webReqService.get('/note/' + title);
   }
 
   add(note: Note) {
-    return this.webReqService.post('/notes', note);
+    return this.webReqService.post('/note', note);
   }
 
-  update(id: number, title:string, content: string ) {
+  update(title:string, content: string ) {
     let note  = new Note()
     note.title = title;
     note.content = content;
-    return this.webReqService.put('/notes/' + title, note);
+    return this.webReqService.put('/note/' + title, note);
   }
 
 }

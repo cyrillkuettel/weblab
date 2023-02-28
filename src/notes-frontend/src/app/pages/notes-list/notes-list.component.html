@@ -2,8 +2,8 @@
 
 
   <div class="notes-list">
-    <app-note-card *ngFor="let note of notes; index as i;"
-                   [routerLink]="i.toString()"
+    <app-note-card *ngFor="let note of notes"
+                   [routerLink]="note.title"
                    [title]="note.title"
                    [content]="note.content">
 
