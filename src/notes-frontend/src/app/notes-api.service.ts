@@ -12,6 +12,7 @@ export class NotesAPIService {
   constructor(private http: HttpClient) { }
 
   getAll() {
+    console.log("getAll() called");
     return this.http.get<Array<Note>>(this.ROOT_URI + '/notes');
   }
 
@@ -20,6 +21,7 @@ export class NotesAPIService {
   }
 
   post(uri: string, payload: Object) {
+    console.log(`add new note: post to  ${this.ROOT_URI + uri}`)
     return this.http.post(this.ROOT_URI + uri, payload);
   }
 

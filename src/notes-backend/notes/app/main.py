@@ -38,8 +38,8 @@ with app.app_context():
 
 @app.route("/notes", methods=["GET"])
 def get_notes():
+    print("get_notes called")
     notes = Note.query.all()
-    print(list(notes))
     if notes:
         return jsonify([n.to_json() for n in notes])
     else:
@@ -48,6 +48,7 @@ def get_notes():
 
 @app.route("/note/<string:title>", methods=["GET"])
 def get_note(title):
+    print("get_note called")
     note = Note.query.get(title)
     if note is None:
         abort(404)
@@ -56,12 +57,15 @@ def get_note(title):
 
 @app.route("/note", methods=["POST"])
 def create_note():
+    print("create_note called")
     if not request.json:
         abort(400)
+
+    group = request.json.get("group") # optional
     note = Note(
         title=request.json.get("title"),
-        content=request.json.get("author"),
-        group=request.json.get("price"),
+        content=request.json.get("content"),
+        group=group,
     )
     db.session.add(note)
     db.session.commit()
@@ -70,15 +74,17 @@ def create_note():
 
 @app.route("/note/<string:title>", methods=["PUT"])
 def update_note(title):
+    print('update note called')
     if not request.json:
         print("Not request.json")
         abort(400)
-    _note = db.query(Note).get(title)
+    _note = Note.query.get(title)
     if _note is None:
         print("Failed to query Note by title")
         abort(404)
-
     _note.title = request.json.get("title", _note.title)
+    print(f"update: parsed new title {_note.title}")
+
     # todo: catch Exception if title exists
 
     _note.content = request.json.get("content", _note.content)

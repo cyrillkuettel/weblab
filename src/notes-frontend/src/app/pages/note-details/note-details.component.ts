@@ -9,7 +9,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
   templateUrl: './note-details.component.html',
   styleUrls: ['./note-details.component.scss']
 })
-export class NoteDetailsComponent implements OnInit{
+export class NoteDetailsComponent implements OnInit {
   note: Note | undefined;
 
   // title acts as an id for note:
@@ -17,45 +17,48 @@ export class NoteDetailsComponent implements OnInit{
 
   // whether this component is 'editing' mode or creating a new Note:
   is_new_note: boolean | undefined;
- constructor(private notesService: NotesService, private router: Router, private route: ActivatedRoute) { }
+
+  constructor(private notesService: NotesService, private router: Router, private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
 
-   this.route.params.subscribe((params: Params)=> {
-     this.note = new Note();
-      if (params['title'])  { // editing the note, because there is id in the url params
-        console.log(`parsed title params: ${params['title']}`)
+    this.route.params.subscribe((params: Params) => {
+      this.note = new Note();
+      if (params['title']) { // editing the note, because there is id in the url params
         // get this note from server
-        this.notesService.get(params['title']).subscribe((response: Note) => {
-            this.note = response;
-            this.title = this.note.title
-        });
-
         this.is_new_note = false;
+        this.notesService.get(params['title']).subscribe((response: Note) => {
+          this.note = response;
+          this.title = this.note.title
+        });
       } else {
         this.is_new_note = true;
       }
-   });
+    });
 
   }
-  onSubmit(form: NgForm) {
-   if (this.is_new_note) {
-     this.notesService.add(form.value);
-   } else { // update
 
-     if (this.title != null) {
-       /* probably there is a better way, with optional
-        chaining instead of these cumbersome null checks */
-       this.notesService.update(this.title, form.value.content);
-     } else {
-       console.error("this.notesId == null");
-     }
-   }
-    this.router.navigateByUrl('/');
+  onSubmit(form: NgForm) {
+    if (this.is_new_note) {
+      this.notesService.add(form.value).subscribe((newNote) => {
+        this.router.navigateByUrl('/');
+      })
+    } else { // update
+      if (this.title != null) {
+        /* probably there is a better way, with optional
+         chaining instead of these cumbersome null checks */
+        this.notesService.update(this.title, form.value.content).subscribe((newNote) => {
+          this.router.navigateByUrl('/');
+        })
+      } else {
+        console.error("fatal: this.title == null");
+      }
+    }
   }
 
   cancel() {
-   this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/');
   }
 
 }

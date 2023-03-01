@@ -21,6 +21,7 @@ export class NotesService {
   }
 
   add(note: Note) {
+    console.log(`adding new note with title ${note.title} and content ${note.content}`);
     return this.webReqService.post('/note', note);
   }
 
