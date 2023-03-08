@@ -9,6 +9,8 @@ import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
 import { NoteCardComponent } from './note-card/note-card.component';
 import { NoteDetailsComponent } from './pages/note-details/note-details.component';
 import { FormsModule} from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
+
 import {HttpClientModule} from "@angular/common/http";
 import { UserLoginComponent } from './user-login/user-login.component';
 
@@ -25,6 +27,7 @@ import { UserLoginComponent } from './user-login/user-login.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     FormsModule
   ],
   providers: [],

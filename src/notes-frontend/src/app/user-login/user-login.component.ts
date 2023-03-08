@@ -8,7 +8,7 @@ import {NgForm} from "@angular/forms";
 
 @Component({ templateUrl: 'user-login.component.html' })
 export class UserLoginComponent implements OnInit {
-  loginForm: FormGroup | undefined;
+  loginForm!: FormGroup;
   loading = false;
   submitted = false;
   returnUrl: string | undefined;
@@ -32,14 +32,13 @@ export class UserLoginComponent implements OnInit {
       password: ['', Validators.required]
     });
 
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl =  '/';
   }
 
   // convenience getter for easy access to form fields
   get f() { return this.loginForm!.controls; }
 
-  onSubmit(form: NgForm) {
+  onSubmit() {
     this.submitted = true;
 
     // stop here if form is invalid

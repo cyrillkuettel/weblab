@@ -1,3 +1,6 @@
+import json
+from sqlite3 import IntegrityError
+
 from flask import Flask
 from flask import jsonify, request, abort
 from flask_sqlalchemy import SQLAlchemy
@@ -16,7 +19,8 @@ auth = HTTPBasicAuth()
 # frontend.
 CORS(app, origins=["http://localhost:4200"])
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
+# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
@@ -25,7 +29,9 @@ db = SQLAlchemy(app)
 class Note(db.Model):
     __tablename__ = "notes"
 
-    title = db.Column(db.String(100), nullable=False, primary_key=True)
+    title = db.Column(db.String(100), nullable=False,
+                      primary_key=True
+                      )
     content = db.Column(db.String(1000), nullable=False)
     group = db.Column(db.String(100), nullable=True)
 
@@ -39,15 +45,30 @@ class Note(db.Model):
 
 with app.app_context():
     db.create_all()
-    note = Note(title="test", content="testcontent here", group="testGroup")
-    db.session.add(note)
-    db.session.commit()
+
+@app.route("/login", methods=["POST"])
+def login():
+
+    raw_data = request.get_data()
+    data = json.loads(raw_data)
+    username = data['username']
+    password = data['password']
+
+    print(f"login has been called {username} and {password}")
+    # check if the user is authorized
+    if verify_password(username, password):
+        print("login succesffull")
+        return jsonify({"message": "Login successful."}), 200
+    else:
+        print("not login")
+        return jsonify({"message": "Invalid login credentials."}), 401
 
 
 @auth.verify_password
 def verify_password(username, password):
     if username in users:
-        return check_password_hash(users.get(username), password)
+        if check_password_hash(users.get(username), password):
+            return True
     return False
 
 
@@ -55,6 +76,15 @@ def verify_password(username, password):
 @auth.login_required
 def get_notes():
     print("get_notes called")
+    # add some initial content
+    note = Note(title="testasdfasdf23432", content="testcontent here",
+                group="testGroup")
+    try:
+        db.session.add(note)
+        db.session.commit()
+    except IntegrityError:
+        print('IntegrityError:')
+
     notes = Note.query.all()
     if notes:
         return jsonify([n.to_json() for n in notes])
