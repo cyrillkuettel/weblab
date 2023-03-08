@@ -1,11 +1,13 @@
+# Dokumentation Notes-App
+![](img/screenshot.png)
+
 ## Einleitung
 
 In der Programming Lab Blockwoche HS2022 wurde den
 Teilnehmenden diverse Themen im Bereich der Webtechnologien vermittelt.
 
 Von Ansätzen und Architekturen zu JavaScript und Typescript, Angular über Authentication 
-und Weiteres vermittelt. Als
-Abschluss wird ein eigenes Webprojekt mit Angular und Python umgesetzt.
+und Weiteres vermittelt. Als Abschluss wird ein eigenes Webprojekt umgesetzt.
 
 
 Im folgenden Kapitel "Architekturdokumentation", wird die Architektur des
@@ -13,7 +15,7 @@ Webprojekts dokumentiert, danach folgt das "Fazit & Reflexion" und Anhänge wie
 das Arbeitsjournal.
 
 
-# Architekturdokumentation
+## Architekturdokumentation
 
 
 ## Einführung und Ziele
@@ -57,8 +59,8 @@ innovative Ideen zu entwickeln.
 
 ## Bausteinsicht
 
-<p align="middle">
-  <img src="https://github.com/cyrillkuettel/weblab/blob/master/img/bausteinsicht.png" width="250px" />
+<p align="left">
+  <img src="https://github.com/cyrillkuettel/weblab/blob/master/img/bausteinsicht.png" width="450px" />
 </p>
 
 ###  Frontend
@@ -84,11 +86,31 @@ Die API wird im folgenden Abschnitt kurz zusammengefasst.
 
 ### Inbetriebnahme der Applikation
 
-Instruktionen zum Start des Servers und das Frontend zu starten sind dem Top-Level `README.md` zu entnehmen.
-Ein Unixoides System wird zwar nicht vorausgesetzt, die Kommandos gehen aber davon aus. 
+Instruktionen zum Start des Servers und das Frontend zu starten sind dem Top-Level 
+[`README.md`](https://github.com/cyrillkuettel/weblab/blob/master/README.md) zu entnehmen. Ein Unixoides System wird zwar nicht vorausgesetzt, die Kommandos gehen aber davon aus. 
 Auf Windows müssen gegebenenfalls kleine Anpassungen gemacht werden.
 
-### Interaktionsmöglichkeiten
+
+# Verteilungssicht
+
+Die Datenbank und die Webserver laufen auf demselben physischen System.
+In der Praxis würde man wohl einen reverse proxy wie NGINX vornedran setzen.
+
+
+![](img/Verteilungssicht.png)
+
+
+## Querschnittliche Konzepte
+Angular verwendet tatsächlich in der Regel das Reactive Programming Pattern 
+und baut auf Observables auf, um die Kommunikation zwischen Komponenten zu handhaben.
+Ein Observable ist ein Objekt, das asynchrone Datenströme repräsentiert
+und Änderungen im Datenfluss an Abonnenten weitergibt. 
+Komponenten können Observables abonnieren und auf Änderungen reagieren,
+wodurch eine reaktive Programmierweise ermöglicht wird.
+
+Zusätzlich dazu werden in diesem Projekt auch Interceptors eingesetzt. 
+Diese Kombination führt dazu, dass der Kontrollfluss auf den ersten Blick 
+nicht gerade ersichtlich ist. Vieles ist implizit gesteuert.
 
 
 ## Fazit und Reflexion
@@ -117,6 +139,10 @@ Code zwischen dem Frontend und Backend zu teilen. So wurde beispielsweise das Mo
 Typescript und einmal in Python definiert, und somit dupliziert.
 
 
+### Mögliche Verbesserungen 
+Die Zeitplanung in diesem Projekt hätte besser gemacht werden können. Das hat nicht gut geklappt.
+Zu sehen ist das ganz einfach daran, dass am Tag der Abgabe noch viel gearbeitet wurde. 
+
 ### Herausforderungen
 
 Bei online tutorials / Beispiel-Code zu Angular ist höchste vorsicht geboten. Je 
@@ -126,5 +152,17 @@ sind. Hier ist es durchaus lohnenswert, bei seiner Suchmaschine das Datum so
 eingrenzen, dass Resultate, die nicht älter als 3 Jahre sind, gar nicht erst 
 angezeigt werden. 
 
-## Source Code
-Die Softwareartefakte sind auf GitHub: https://cyrillkuettel/weblab/
+
+# Arbeitsjournal
+
+| Datum     | Tätigkeit                                                                       | Zeit (h) | Kategorie                   |
+|-----------|---------------------------------------------------------------------------------|----------|-----------------------------|
+| 19.2.     | Initialisierung, erste grobe Projektstruktur                                    | 4        | Dokumentation / Entwicklung |
+| 26.2.     | Frontend: Diverse Components                                                    | 8        | Entwicklung                 |
+| 27.2.     | Frontend: Notizen übersicht                                                     | 2        | Entwicklung                 |
+| 2.3.      | Frontend: Styles                                                                | 2        | Entwicklung                 |
+| 3.3.      | Refactoring und Inbetriebnahme Dokumentiert im README                           | 1        | Dokumentation               |
+| 5.3.      | Backend CRUD Funktionalität und div. Arbeiten Frontend                          | 15       | Entwicklung                 |
+| 6.3.      | Backend CRUD                                                                    | 10       | Entwicklung                 |
+| 8.3.      | Login Funktionalität und Export JSON von Notes. Dokumentation und Präsentation. | 12       | Dokumentation / Entwicklung |
+| **Total** |                                                                                 | **54**   |                             |
