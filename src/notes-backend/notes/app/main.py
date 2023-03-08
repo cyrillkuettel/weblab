@@ -77,13 +77,13 @@ def verify_password(username, password):
 def get_notes():
     print("get_notes called")
     # add some initial content
-    note = Note(title="testasdfasdf23432", content="testcontent here",
-                group="testGroup")
-    try:
-        db.session.add(note)
-        db.session.commit()
-    except IntegrityError:
-        print('IntegrityError:')
+    # try:
+    #     note = Note(title="testasdfasdf23432", content="testcontent here",
+    #                 group="testGroup")
+    #     db.session.add(note)
+    #     db.session.commit()
+    # except Exception:
+    #     print('IntegrityError.j')
 
     notes = Note.query.all()
     if notes:
