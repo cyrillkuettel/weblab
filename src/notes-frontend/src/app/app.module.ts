@@ -11,8 +11,9 @@ import { NoteDetailsComponent } from './pages/note-details/note-details.componen
 import { FormsModule} from "@angular/forms";
 import { ReactiveFormsModule } from '@angular/forms';
 
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { UserLoginComponent } from './user-login/user-login.component';
+import {BasicAuthInterceptor} from "./interceptors/basic-auth-interceptor";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import { UserLoginComponent } from './user-login/user-login.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

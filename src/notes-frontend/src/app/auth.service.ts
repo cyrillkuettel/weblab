@@ -8,8 +8,20 @@ import {environment} from "./environments/environment";
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+  get password(): string | undefined {
+    return this._password;
+  }
+
+  set password(value: string | undefined) {
+    this._password = value;
+  }
+  get username(): string | undefined {
+    return this._username;
+  }
     private userSubject: BehaviorSubject<User>;
     public user: Observable<User>;
+  private _username: string | undefined;
+  private _password: string | undefined;
 
     constructor(
         private router: Router,
@@ -24,10 +36,11 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string) {
-      console.log(`post request with ${username} and ${password}`);
+        return this.http.post<any>(`${environment.apiUrl}/login`, { username, password }, {headers:{skip_interceptor:"true"}})
 
-        return this.http.post<any>(`${environment.apiUrl}/login`, { username, password })
             .pipe(map(user => {
+              this._username = username;
+              this._password = password;
                 // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
                 user.authdata = window.btoa(username + ':' + password);
                 localStorage.setItem('user', JSON.stringify(user));

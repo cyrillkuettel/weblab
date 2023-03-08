@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import {AuthenticationService} from "../auth.service";
-import {NgForm} from "@angular/forms";
 
 
 @Component({ templateUrl: 'user-login.component.html' })
