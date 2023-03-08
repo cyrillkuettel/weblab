@@ -94,14 +94,18 @@ Auf Windows müssen gegebenenfalls kleine Anpassungen gemacht werden.
 # Verteilungssicht
 
 Die Datenbank und die Webserver laufen auf demselben physischen System.
-In der Praxis würde man wohl einen reverse proxy wie NGINX vornedran setzen.
+In der Praxis würde man wohl einen reverse proxy wie NGINX vornedran setzen. 
+Das bietet einige Vorteil, wie z.B. fine-tuning des Caching, load-balancing etc.
 
 
-![](img/Verteilungssicht.png)
+<p align="left">
+  <img src="https://github.com/cyrillkuettel/weblab/blob/master/img/Verteilungssicht.png" width="550px" />
+</p>
+
 
 
 ## Querschnittliche Konzepte
-Angular verwendet tatsächlich in der Regel das Reactive Programming Pattern 
+Angular verwendet in der Regel das Reactive Programming Pattern 
 und baut auf Observables auf, um die Kommunikation zwischen Komponenten zu handhaben.
 Ein Observable ist ein Objekt, das asynchrone Datenströme repräsentiert
 und Änderungen im Datenfluss an Abonnenten weitergibt. 
@@ -109,8 +113,8 @@ Komponenten können Observables abonnieren und auf Änderungen reagieren,
 wodurch eine reaktive Programmierweise ermöglicht wird.
 
 Zusätzlich dazu werden in diesem Projekt auch Interceptors eingesetzt. 
-Diese Kombination führt dazu, dass der Kontrollfluss auf den ersten Blick 
-nicht gerade ersichtlich ist. Vieles ist implizit gesteuert.
+Bei sowohol Interceptors als auch Observables ist der Kontrollfluss auf den ersten Blick 
+nicht ersichtlich. Vieles ist implizit gesteuert.
 
 
 ## Fazit und Reflexion
@@ -132,8 +136,8 @@ funktionieren sehr gut, sogar aus einem HTML-File kann zu entsprechenden Variabe
 gesprungen werden. 
 
 Was auch sehr gut geklappt hat, war das Einbinden eines Python Webservers. Es hat funktioniert, 
-jedoch würde ich es bei einem nächsten Projekt wahrscheinlich nicht mehr so machen:
-Das Hinzufügen von Programmiersprachen in einem Projekt erhöht die Komplexität. In disem Fall war
+dennoch würde ich es bei einem nächsten Projekt wahrscheinlich nicht mehr diesen Ansatz wählen.
+Das Hinzufügen von Programmiersprachen in einem Projekt erhöht die Komplexität. In diesem Fall war
 es nicht nur nicht notwendig, es hat auch zu etwas Mehraufwand geführt. Zum Beispiel gibt es keine Möglichkeit,
 Code zwischen dem Frontend und Backend zu teilen. So wurde beispielsweise das Modell für eine "Note" einmal 
 Typescript und einmal in Python definiert, und somit dupliziert.
