@@ -9,7 +9,8 @@ export class NotesService {
 
   notes: Note[] = new Array<Note>();
 
-  constructor(private webReqService: NotesAPIService) { }
+  constructor(private webReqService: NotesAPIService) {
+  }
 
   getAll() {
     return this.webReqService.getAll();
@@ -25,8 +26,8 @@ export class NotesService {
     return this.webReqService.post('/note', note);
   }
 
-  update(title:string, content: string ) {
-    let note  = new Note()
+  update(title: string, content: string) {
+    let note = new Note()
     note.title = title;
     note.content = content;
     return this.webReqService.put('/note/' + title, note);

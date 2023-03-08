@@ -5,7 +5,7 @@ import {Component, Input, OnInit} from '@angular/core';
   templateUrl: './note-card.component.html',
   styleUrls: ['./note-card.component.scss']
 })
-export class NoteCardComponent implements OnInit{
+export class NoteCardComponent implements OnInit {
   @Input('title') title: string | undefined;
   @Input('content') content: string | undefined;
 
