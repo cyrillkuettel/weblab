@@ -10,12 +10,20 @@
   padding-top: 50px;
 }
 
-.add-buttom {
-  position: fixed;
-  bottom: 0;
-  width: 400px;
+/* shared button styles */
+.button-st{
   border-radius: 0;
+  width: 500px;
   height: 55px;
+  font-size: 20px;
+  box-shadow: 0px 0px 15px rgba($blue, 0.2);
+}
+.export-button {
+  background: #41bd36;
+}
+.add-button {
+  position: fixed;
+  border-radius: 0;
   font-size: 20px;
   box-shadow: 0px 0px 15px rgba($blue, 0.2);
 }

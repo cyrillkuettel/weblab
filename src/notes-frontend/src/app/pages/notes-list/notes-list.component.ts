@@ -21,4 +21,22 @@ export class NotesListComponent implements OnInit {
   }
 
 
+  export() {
+    if (!this.notes) {
+      console.log("Can't find notes to export");
+      return;
+    }
+    const jsonData = JSON.stringify(this.notes);
+    const blob = new Blob([jsonData], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+
+// Create a new anchor element to trigger the download
+    const downloadLink = document.createElement('a');
+    downloadLink.href = url;
+    downloadLink.download = 'notes.json';
+    downloadLink.click();
+
+// Clean up by revoking the URL object
+    URL.revokeObjectURL(url);
+  }
 }
