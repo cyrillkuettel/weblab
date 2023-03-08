@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+import {environment} from "./enironments/environment";
 import { HttpClient } from '@angular/common/http';
 import {Note} from "./models/node.model";
 @Injectable({
@@ -7,7 +8,7 @@ import {Note} from "./models/node.model";
 })
 export class NotesAPIService {
 
-  readonly ROOT_URI: string = 'http://localhost:5000';
+  readonly ROOT_URI: string = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -29,8 +30,5 @@ export class NotesAPIService {
     return this.http.put(this.ROOT_URI + uri, payload);
   }
 
-  // delete(uri: string) {
-  //   return this.http.delete(this.ROOT_URI + uri);
-  // }
 
 }

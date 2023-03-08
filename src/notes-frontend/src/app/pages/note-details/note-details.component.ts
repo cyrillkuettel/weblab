@@ -25,7 +25,7 @@ export class NoteDetailsComponent implements OnInit {
 
     this.route.params.subscribe((params: Params) => {
       this.note = new Note();
-      if (params['title']) { // editing the note, because there is id in the url params
+      if (params['title']) { // We can fetch the title from the url params, because the routing module has the :title  entry
         // get this note from server
         this.is_new_note = false;
         this.notesService.get(params['title']).subscribe((response: Note) => {

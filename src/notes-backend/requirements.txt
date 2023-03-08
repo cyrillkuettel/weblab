@@ -1,4 +1,5 @@
 flask
 flask-sqlalchemy
 PyMySQL
+Flask-HTTPAuth
 flask-cors

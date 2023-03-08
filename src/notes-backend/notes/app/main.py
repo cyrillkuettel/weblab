@@ -2,10 +2,18 @@ from flask import Flask
 from flask import jsonify, request, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+from flask_httpauth import HTTPBasicAuth
+from werkzeug.security import generate_password_hash, check_password_hash
+
+
+user = "test"
+pw = "test"
+users = {user: generate_password_hash(pw)}
 
 app = Flask(__name__)
-# setup because the python backend uses a different URI than the Angular frontend.
-# 4200 is the default Angular port
+auth = HTTPBasicAuth()
+# Need cors because the python backend uses a different URI than the Angular
+# frontend.
 CORS(app, origins=["http://localhost:4200"])
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
@@ -36,7 +44,15 @@ with app.app_context():
     db.session.commit()
 
 
+@auth.verify_password
+def verify_password(username, password):
+    if username in users:
+        return check_password_hash(users.get(username), password)
+    return False
+
+
 @app.route("/notes", methods=["GET"])
+@auth.login_required
 def get_notes():
     print("get_notes called")
     notes = Note.query.all()
@@ -47,6 +63,7 @@ def get_notes():
 
 
 @app.route("/note/<string:title>", methods=["GET"])
+@auth.login_required
 def get_note(title):
     print("get_note called")
     note = Note.query.get(title)
@@ -56,12 +73,13 @@ def get_note(title):
 
 
 @app.route("/note", methods=["POST"])
+@auth.login_required
 def create_note():
     print("create_note called")
     if not request.json:
         abort(400)
 
-    group = request.json.get("group") # optional
+    group = request.json.get("group")  # optional
     note = Note(
         title=request.json.get("title"),
         content=request.json.get("content"),
@@ -73,8 +91,9 @@ def create_note():
 
 
 @app.route("/note/<string:title>", methods=["PUT"])
+@auth.login_required
 def update_note(title):
-    print('update note called')
+    print("update note called")
     if not request.json:
         print("Not request.json")
         abort(400)
