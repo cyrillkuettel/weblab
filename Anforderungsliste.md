@@ -3,9 +3,9 @@
 ## Kontext
 
 
-Ein Tool, um schnell Notizen erfassen zu können, braucht fast jeder. Dieses Projekt 
+Ein Tool, um schnell Notizen zu erfassen, braucht fast jeder. Dieses Projekt 
 setzt sich zum Ziel, eine minimale Notes-App zu erstellen. 
-Ein Beispiel für bereits existierende Anwendungen, die ähnlich sind: Google Keep.
+Ein Beispiel für bereits existierende Anwendungen, die ähnlich sind, ist zum Beispiel "Google Keep".
 
 
 
@@ -20,7 +20,7 @@ Als Benutzer möchte ich mich anmelden können, dass ich zugriff auf meine Notiz
 **Akzeptanzkriterien**
 
 * Mittels korrektem Benutzername (E-Mail-Adresse) und korrektem Passwort gelange ich zu meinen Notizen.
-* Mit nicht korrekte Benutzerdaten (Benutzername / Passwörter) kann ich mich nicht 
+* Mit nicht korrekten Benutzerdaten (Benutzername / Passwörter) kann ich mich nicht 
   anmelden.
 
 #### User Story 2: Notitz erfassen (Prio 'Must')
